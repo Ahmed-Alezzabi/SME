@@ -1,0 +1,6 @@
+{
+  "name": "منظومة مركز أعمال طرابلس",
+  "description": "منظومة إلكترونية متكاملة لإدارة البرامج التدريبية، بيانات المشاركين، وإصدار الشهادات الإلكترونية برمز QR مع نظام تحكم بالصلاحيات وتقارير متطورة لمركز أعمال طرابلس.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

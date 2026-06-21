@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  trainer
+  registrar
+  certificates
+  readonly
+}
+
+enum ProgramStatus {
+  planning
+  active
+  completed
+  archived
+}
+
+enum AttendanceStatus {
+  present
+  absent
+  excused
+  pending
+}
+
+enum PassStatus {
+  passed
+  failed
+  pending
+}
+
+model TrainingProgram {
+  id              String        @id @default(uuid())
+  programNumber   String        @unique @map("program_number") // رقم البرنامج
+  name            String        // اسم البرنامج
+  type            String        // نوع البرنامج (حضورى، عن بعد، هجين)
+  startDate       DateTime      @map("start_date") // تاريخ البداية
+  endDate         DateTime      @map("end_date") // تاريخ النهاية
+  days            Int           // عدد الأيام
+  hours           Int           // عدد الساعات
+  location        String        // مكان التنفيذ
+  city            String        // المدينة
+  trainer         String        // المدرب
+  organization    String        // الجهة المنفذة
+  targetGroup     String        @map("target_group") // الفئة المستهدفة
+  maxParticipants Int           @map("max_participants") // الحد الأقصى للمشاركين
+  status          ProgramStatus @default(planning)
+  notes           String?       @db.Text
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  participants    Participant[]
+
+  @@map("training_programs")
+}
+
+model Participant {
+  id               String           @id @default(uuid())
+  name             String           // الاسم الرباعي
+  nationalId       String           @unique @map("national_id") // الرقم الوطني
+  birthDate        DateTime         @map("birth_date") // تاريخ الميلاد
+  gender           String           // الجنس
+  education        String           // المؤهل العلمي
+  specialization   String           // التخصص
+  jobTitle         String           @map("job_title") // الوظيفة
+  employer         String           // جهة العمل
+  city             String           // المدينة
+  phone            String           // رقم الهاتف
+  email            String           // البريد الإلكتروني
+  attendanceStatus AttendanceStatus @default(pending) @map("attendance_status")
+  attendanceRate   Float            @default(0.0) @map("attendance_rate") // نسبة الحضور
+  evaluation       Float            @default(0.0) @map("evaluation") // درجة التقييم
+  passStatus       PassStatus       @default(pending) @map("pass_status") // حالة الاجتياز
+  notes            String?          @db.Text
+  certificateId    String?          @unique @map("certificate_id") // رقم الشهادة الفريد
+  certificateDate  DateTime?        @map("certificate_date") // تاريخ إصدار الشهادة
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  programId        String           @map("program_id")
+  program          TrainingProgram  @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([nationalId])
+  @@index([programId])
+  @@map("participants")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  timestamp DateTime @default(now())
+  user      String
+  role      Role
+  action    String
+  category  String   // e.g. "programs", "participants", "certificates", "system"
+  details   String   @db.Text
+
+  @@map("audit_logs")
+}
