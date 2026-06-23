@@ -5,12 +5,15 @@
   --font-sans: "Cairo", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  /* Brand colors */
-  --color-brand-primary: #065f46; /* Deep SME Teal */
-  --color-brand-secondary: #0d9488; /* Institutional Teal/Green */
-  --color-brand-accent: #d97706; /* Islamic/Arabesque Gold */
-  --color-brand-gold-light: #fef3c7; /* Light Gold BG */
-  --color-brand-dark: #0f172a; /* Slate Dark */
+  /* Brand colors matching sme.gov.ly website */
+  --color-sme-navy: #0e2b47; /* Deep modern Libyan institutional official SME Blue */
+  --color-sme-navy-light: #163e63; /* Medium SME Blue for Hover/Secondary */
+  --color-sme-navy-dark: #071726; /* Deepest SME Background / Header gradient */
+  --color-sme-navy-soft: #f0f4f8; /* Soft blue-gray for subtle backgrounds */
+  --color-sme-gold: #c29b38; /* Libyan SME Golden Sand Amber */
+  --color-sme-gold-light: #fdfaf2; /* Warm gold accent glow bg */
+  --color-sme-gold-hover: #b08d30; /* Darker Gold for hover states */
+  --color-sme-slate: #1e293b; /* General dark slate text */
 }
 
 @layer base {
@@ -30,31 +33,58 @@
 
 /* Custom print-specific stylesheet */
 @media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-  
-  .print-only {
-    display: block !important;
-  }
-
-  .print-card-landscape {
+  html, body {
     width: 297mm;
     height: 210mm;
-    padding: 0;
-    margin: 0;
-    page-break-inside: avoid;
-    page-break-after: always;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Hide all screen interface elements during printing */
+  body * {
+    visibility: hidden !important;
+  }
+  
+  /* Show only the certificate card and its visual overlays */
+  #printable-certificate, 
+  #printable-certificate * {
+    visibility: visible !important;
+  }
+  
+  #printable-certificate {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-col: true;
+    justify-content: space-between;
+    padding: 8% !important; /* Elegant inset padding relative to dimensions */
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    page-break-inside: avoid !important;
+    page-break-after: always !important;
+    z-index: 9999999 !important;
+    box-shadow: none !important;
+  }
+
+  .no-print {
+    display: none !important;
   }
 
   @page {
     size: A4 landscape;
-    margin: 0;
+    margin: 0 !important;
   }
 }
 

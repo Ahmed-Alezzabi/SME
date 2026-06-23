@@ -311,10 +311,10 @@ export default function ParticipantsList({
     <div className="space-y-6 animate-fade-in" id="participants-module">
       
       {/* Header Panel */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-100 border-r-8 border-sme-gold">
         <div>
           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <Users className="text-emerald-700" size={24} />
+            <Users className="text-sme-navy" size={24} />
             إدارة بيانات المشاركين والطلبات
           </h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -325,7 +325,7 @@ export default function ParticipantsList({
         <div className="flex flex-wrap items-center gap-2">
           <button 
             onClick={exportToCSV}
-            className="bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 transition"
+            className="bg-sme-gold-light hover:bg-sme-gold-light/60 text-sme-gold-hover border border-sme-gold/20 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 transition"
             title="تصدير بصيغة Excel ملائمة"
           >
             <Download size={14} /> تصدير Excel
@@ -335,14 +335,14 @@ export default function ParticipantsList({
             <>
               <button 
                 onClick={() => setIsImportOpen(true)}
-                className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 transition"
+                className="bg-sme-navy-soft hover:bg-sme-navy-soft/60 text-sme-navy border border-sme-navy-soft text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-1.5 transition"
               >
                 <UploadCloud size={14} /> استيراد إكسل
               </button>
 
               <button 
                 onClick={handleOpenAdd}
-                className="bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center gap-1.5 transition"
+                className="bg-sme-navy hover:bg-sme-navy-light text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center gap-1.5 transition"
               >
                 <Plus size={16} /> تسجيل مشارك جديد
               </button>
@@ -360,7 +360,7 @@ export default function ParticipantsList({
             placeholder="الاسم، الرقم الوطني، الهاتف..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pr-9 pl-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full pr-9 pl-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           />
         </div>
 
@@ -368,7 +368,7 @@ export default function ParticipantsList({
           <select 
             value={programFilter}
             onChange={(e) => setProgramFilter(e.target.value)}
-            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           >
             <option value="">جميع البرامج المسجلين بها</option>
             {programs.map((p) => (
@@ -381,7 +381,7 @@ export default function ParticipantsList({
           <select 
             value={passFilter}
             onChange={(e) => setPassFilter(e.target.value)}
-            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           >
             <option value="">جميع الحالات التدريبية</option>
             <option value="passed">مجتاز بنجاح</option>
@@ -394,7 +394,7 @@ export default function ParticipantsList({
           <select 
             value={cityFilter}
             onChange={(e) => setCityFilter(e.target.value)}
-            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           >
             <option value="">جميع مدن الإقامة</option>
             {uniqueCities.map((c, idx) => (
@@ -448,24 +448,10 @@ export default function ParticipantsList({
                       </td>
 
                       {/* Communications */}
-                      <td className="p-4 space-y-1 font-medium text-slate-600 font-mono">
-                        <p className="flex items-center gap-1"><Phone size={11} className="text-slate-400" /> {p.phone}</p>
-                        <p className="flex items-center gap-1"><Mail size={11} className="text-slate-400" /> {p.email}</p>
-                      </td>
-
-                      {/* Program Registered & Details */}
-                      <td className="p-4 space-y-1">
-                        <p className="font-bold text-slate-800 line-clamp-1">{prog ? prog.name : "غير محدد"}</p>
-                        <div className="flex items-center gap-2 text-[10px] text-slate-500">
-                          <span className="bg-slate-100 px-1.5 py-0.5 rounded font-bold">{p.city}</span>
-                          <span>{p.jobTitle} في ({p.employer})</span>
-                        </div>
-                      </td>
-
-                      {/* Attendance Rate */}
+                                        {/* Attendance Rate */}
                       <td className="p-4 text-center">
                         <div className="inline-flex flex-col items-center">
-                          <span className={`${p.attendanceRate >= 80 ? 'text-emerald-700 font-bold' : 'text-red-600'} font-mono`}>
+                          <span className={`${p.attendanceRate >= 80 ? 'text-sme-navy font-bold' : 'text-red-600'} font-mono`}>
                             {p.attendanceRate}%
                           </span>
                           <span className="text-[9px] text-slate-400">{p.attendanceStatus === 'present' ? 'منتظم' : 'متقطع'}</span>
@@ -475,7 +461,7 @@ export default function ParticipantsList({
                       {/* Evaluation score */}
                       <td className="p-4 text-center">
                         <span className={`font-mono font-bold px-2 py-1 rounded bg-slate-100 ${
-                          p.evaluation >= 80 ? 'text-emerald-800 bg-emerald-50' : 'text-slate-600'
+                          p.evaluation >= 80 ? 'text-sme-navy bg-sme-navy-soft' : 'text-slate-600'
                         }`}>
                           {p.evaluation} / 100
                         </span>
@@ -484,8 +470,8 @@ export default function ParticipantsList({
                       {/* Pass Status */}
                       <td className="p-4 text-center">
                         <span className={`inline-block font-semibold px-2 py-0.5 rounded-full ${
-                          p.passStatus === "passed" ? "bg-emerald-100 text-emerald-800" :
-                          p.passStatus === "failed" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"
+                          p.passStatus === "passed" ? "bg-sme-navy-soft text-sme-navy" :
+                          p.passStatus === "failed" ? "bg-red-100 text-red-800" : "bg-sme-gold-light text-sme-gold-hover border border-sme-gold/10"
                         }`}>
                           {p.passStatus === "passed" ? "ناجح ومجتاز" : p.passStatus === "failed" ? "غير مجتاز" : "قيد المراجعة"}
                         </span>
@@ -497,7 +483,7 @@ export default function ParticipantsList({
                           <div className="flex items-center justify-center gap-1.5">
                             <button 
                               onClick={() => handleOpenEdit(p)}
-                              className="p-1 px-2 text-slate-600 hover:text-emerald-900 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-[11px] font-semibold border border-slate-100"
+                              className="p-1 px-2 text-slate-600 hover:text-sme-navy bg-slate-50 hover:bg-slate-100 rounded-lg transition text-[11px] font-semibold border border-slate-100"
                               title="تحديث البيانات وعلامة الاجتياز"
                             >
                               تعديل / تقييم
@@ -531,32 +517,36 @@ export default function ParticipantsList({
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-fade-in">
             {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-800 to-teal-800 px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-sme-navy to-sme-navy-light px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
               <div>
                 <h3 className="font-bold text-base">
                   {editingPart ? "تعديل وتقييم المشارك" : "تسجيل مشارك جديد بالمنظومة"}
                 </h3>
-                <p className="text-[10px] text-emerald-200 mt-0.5">يرجى التحقق من الرقم الوطني لتجنب الازدواجية البرمجية.</p>
+                <p className="text-[10px] text-sme-gold-light mt-0.5">
+                  يرجى التحقق من الرقم الوطني والبيانات الأساسية قبل التدقيق والاعتماد الإداري.
+                </p>
               </div>
-              <button onClick={() => setIsFormOpen(false)} className="text-white/80 hover:text-white p-1 rounded-lg">
+              <button 
+                onClick={() => setIsFormOpen(false)} 
+                className="text-white hover:bg-white/10 p-1 rounded-lg"
+              >
                 <X size={18} />
               </button>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
+              
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* Full name */}
+                {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">الاسم الرباعي الكامل للمشارك *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">الاسم رباعي بالكامل *</label>
                   <input 
                     type="text" 
                     placeholder="مثال: يوسف محمد عبد المطلوب الشريف"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
                   />
                 </div>
 
@@ -570,7 +560,7 @@ export default function ParticipantsList({
                     required
                     value={nationalId}
                     onChange={(e) => setNationalId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono text-right"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50 font-mono text-right"
                   />
                 </div>
 
@@ -582,7 +572,7 @@ export default function ParticipantsList({
                     placeholder="name@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono"
                   />
                 </div>
 
@@ -595,7 +585,7 @@ export default function ParticipantsList({
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono"
                   />
                 </div>
 
@@ -607,7 +597,7 @@ export default function ParticipantsList({
                     required
                     value={birthDate}
                     onChange={(e) => setBirthDate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono"
                   />
                 </div>
 
@@ -617,7 +607,7 @@ export default function ParticipantsList({
                   <select 
                     value={gender}
                     onChange={(e) => setGender(e.target.value as any)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="male">ذكر</option>
                     <option value="female">أنثى</option>
@@ -630,7 +620,7 @@ export default function ParticipantsList({
                   <select 
                     value={education}
                     onChange={(e) => setEducation(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="ثانوي">ثانوي أو ما يعادلها</option>
                     <option value="دبلوم عالي">دبلوم عالي معهد</option>
@@ -648,7 +638,7 @@ export default function ParticipantsList({
                     placeholder="مثال: إداري مالي أو ميكاترونكس"
                     value={specialization}
                     onChange={(e) => setSpecialization(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -660,7 +650,7 @@ export default function ParticipantsList({
                     placeholder="مثال: مدير فني أو عمل حر"
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -672,7 +662,7 @@ export default function ParticipantsList({
                     placeholder="مثال: متجر مستقل أو موظف عام"
                     value={employer}
                     onChange={(e) => setEmployer(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -682,7 +672,7 @@ export default function ParticipantsList({
                   <select 
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="طرابلس">طرابلس</option>
                     <option value="بنغازي">بنغازي</option>
@@ -699,7 +689,7 @@ export default function ParticipantsList({
                   <select 
                     value={programId}
                     onChange={(e) => setProgramId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-sans"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-sans"
                   >
                     {programs.map((p) => (
                       <option key={p.id} value={p.id}>[{p.programNumber}] {p.name}</option>
@@ -712,7 +702,7 @@ export default function ParticipantsList({
               {/* Attendance & Evaluations */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4">
                 <h4 className="font-bold text-slate-800 text-xs border-b border-light-slate pb-1.5 flex items-center gap-1">
-                  <Settings size={14} className="text-emerald-700" />
+                  <Settings size={14} className="text-blue-600" />
                   رصد المتابعة والتقدير الأكاديمي والتحصيل
                 </h4>
                 
@@ -723,7 +713,7 @@ export default function ParticipantsList({
                     <select 
                       value={attendanceStatus}
                       onChange={(e) => setAttendanceStatus(e.target.value as any)}
-                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
+                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     >
                       <option value="pending">قيد الانتظار لم يمتحن</option>
                       <option value="present">ملتزم بالحضور المنتظم</option>
@@ -741,7 +731,7 @@ export default function ParticipantsList({
                       max={100}
                       value={attendanceRate}
                       onChange={(e) => setAttendanceRate(Number(e.target.value))}
-                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 text-center font-mono"
+                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-center font-mono"
                     />
                   </div>
 
@@ -755,7 +745,7 @@ export default function ParticipantsList({
                       required
                       value={evaluation}
                       onChange={(e) => setEvaluation(Number(e.target.value))}
-                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 text-center font-mono"
+                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-center font-mono"
                     />
                   </div>
                 </div>
@@ -767,7 +757,7 @@ export default function ParticipantsList({
                     <select 
                       value={passStatus}
                       onChange={(e) => setPassStatus(e.target.value as any)}
-                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
+                      className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     >
                       <option value="pending font-sans">قيد المراجعة وإنتظار النتائج</option>
                       <option value="passed">مجتاز بنجاح (مستحق للشهادة)</option>
@@ -806,7 +796,7 @@ export default function ParticipantsList({
                 </button>
                 <button 
                   type="submit" 
-                  className="px-4 py-2 text-xs font-semibold text-white bg-emerald-800 hover:bg-emerald-700 rounded-xl transition shadow-sm"
+                  className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition shadow-sm"
                 >
                   {editingPart ? "تأكيد التعديلات والحفظ" : "إضافة وتسجيل"}
                 </button>
@@ -822,13 +812,13 @@ export default function ParticipantsList({
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-fade-in">
             {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-800 to-teal-800 px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-blue-800 to-indigo-800 px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
               <div>
                 <h3 className="font-bold text-base flex items-center gap-1.5">
                   <UploadCloud size={20} />
                   نظام استيراد ومعالجة البيانات الذكي من Excel
                 </h3>
-                <p className="text-[10px] text-emerald-200 mt-0.5">
+                <p className="text-[10px] text-blue-200 mt-0.5">
                   انسخ الأعمدة مباشرة من ملف الإكسل (الاسم ثم الرقم الوطني ثم الهاتف والبريد والمدينة) والصقها هنا وسنتولى معالجتها.
                 </p>
               </div>
@@ -846,12 +836,12 @@ export default function ParticipantsList({
 
             <div className="p-6 space-y-4">
               {/* Instructions on Excel Template */}
-              <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-100/60 text-[11px] leading-relaxed text-emerald-950 space-y-1">
+              <div className="bg-blue-50 rounded-xl p-3 border border-blue-100/60 text-[11px] leading-relaxed text-blue-950 space-y-1">
                 <p className="font-bold flex items-center gap-1 text-xs">
-                  <CheckCircle size={14} className="text-emerald-700" /> 
+                  <CheckCircle size={14} className="text-blue-600" /> 
                   نسق الأعمدة المقترحة في الإكسل بالترتيب التالي للحصول على أفضل دقة:
                 </p>
-                <p className="font-mono bg-white p-1.5 rounded text-center border border-emerald-100 font-bold tracking-wide">
+                <p className="font-mono bg-white p-1.5 rounded text-center border border-blue-100 font-bold tracking-wide">
                   الاسم الرباعي | الرقم الوطني | رقم الهاتف | البريد الإلكتروني | المدينة | الوظيفة | جهة العمل
                 </p>
               </div>
@@ -864,7 +854,7 @@ export default function ParticipantsList({
                   placeholder={`أحمد علي فرج الشريف\t119930283921\t0912223344\tahmed@mail.ly\tطرابلس\tعضو ريادي\tمهندس حر\nمريم مسعود الصالحين\t219960293411\t0926543210\tmimi@mail.ly\tطرابلس\tأعمال حرة\tمتجر منزلي`}
                   value={rawText}
                   onChange={(e) => setRawText(e.target.value)}
-                  className="w-full p-3 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-800 bg-slate-50 font-mono text-right"
+                  className="w-full p-3 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono text-right"
                 ></textarea>
               </div>
 
@@ -887,7 +877,7 @@ export default function ParticipantsList({
                   <button 
                     type="button" 
                     onClick={handleParseImport}
-                    className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-4 rounded-xl shadow-sm transition w-full sm:w-auto"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 px-4 rounded-xl shadow-sm transition w-full sm:w-auto"
                   >
                     معالجة وفحص البيانات المدخلة قبل الإدراج
                   </button>
@@ -910,7 +900,7 @@ export default function ParticipantsList({
               {importPreview.length > 0 && (
                 <div className="space-y-2">
                   <h4 className="font-bold text-slate-800 text-xs flex items-center gap-1">
-                    <FileCheck2 size={16} className="text-teal-700" />
+                    <FileCheck2 size={16} className="text-blue-600" />
                     معاينة جدول البيانات الجاهزة للاستيراد وتحديد البرنامج المساعد ({importPreview.length} متدرب جاهز)
                   </h4>
                   
@@ -959,7 +949,7 @@ export default function ParticipantsList({
                   <div className="pt-2 flex justify-end">
                     <button 
                       onClick={triggerBatchImport}
-                      className="bg-teal-700 hover:bg-teal-600 text-white font-bold text-xs py-2 px-5 rounded-xl shadow-md transition"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 px-5 rounded-xl shadow-md transition"
                     >
                       تأكيد استيراد وحفظ كافة السجلات في المنظومة الآن
                     </button>

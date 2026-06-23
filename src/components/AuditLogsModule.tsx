@@ -47,8 +47,8 @@ export default function AuditLogsModule({
 
   const getCategoryBadgeClass = (cat: string) => {
     switch (cat) {
-      case "programs": return "bg-emerald-100 text-emerald-800";
-      case "participants": return "bg-teal-100 text-teal-800";
+      case "programs": return "bg-blue-100 text-blue-800";
+      case "participants": return "bg-sky-100 text-sky-800";
       case "certificates": return "bg-amber-100 text-amber-800";
       case "system": return "bg-slate-100 text-slate-800";
       case "import": return "bg-indigo-100 text-indigo-800";
@@ -81,7 +81,7 @@ export default function AuditLogsModule({
       {/* Simulation Simulator Frame */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-md border border-slate-700/50 space-y-4">
         <div className="flex items-center gap-3">
-          <div className="bg-emerald-600 p-2.5 rounded-xl">
+          <div className="bg-blue-600 p-2.5 rounded-xl">
             <Lock size={22} className="text-white" />
           </div>
           <div>
@@ -99,12 +99,12 @@ export default function AuditLogsModule({
                 onClick={() => onRoleChange(role.value)}
                 className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
                   isCurrent 
-                    ? 'bg-emerald-950/80 border-emerald-600 ring-2 ring-emerald-500' 
+                    ? 'bg-blue-950/80 border-blue-600 ring-2 ring-blue-500' 
                     : 'bg-slate-800/40 border-slate-700/60 hover:border-slate-500 hover:bg-slate-800/80'
                 }`}
               >
                 <div className="space-y-1">
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isCurrent ? 'bg-emerald-700 text-white' : 'bg-slate-700 text-slate-300'}`}>
+                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isCurrent ? 'bg-blue-700 text-white' : 'bg-slate-700 text-slate-300'}`}>
                     {isCurrent ? "نشط حالياً" : "صلاحية متاحة"}
                   </span>
                   <h4 className="text-xs font-bold font-sans pt-1 text-slate-100">{role.label}</h4>
@@ -122,7 +122,7 @@ export default function AuditLogsModule({
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between pb-2 border-b border-slate-50">
             <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-              <Activity className="text-emerald-700" size={18} />
+              <Activity className="text-blue-600" size={18} />
               سجل تدقيق الأمان والعمليات (Audit Logs)
             </h3>
             <span className="text-xs text-slate-500 font-semibold">كل العمليات مجدولة للرقابة والامتثال القانوني</span>
@@ -195,7 +195,7 @@ export default function AuditLogsModule({
           {/* Active Backup / DB stats */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
             <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-              <Database size={18} className="text-teal-700" />
+              <Database size={18} className="text-blue-600" />
               إدارة بيئة التشغيل واستقرار الداتا
             </h3>
             
@@ -206,15 +206,15 @@ export default function AuditLogsModule({
             <div className="space-y-2 text-xs font-semibold">
               <div className="flex justify-between bg-slate-50 p-2 rounded-lg">
                 <span className="text-slate-500">حالة خط الخادم:</span>
-                <span className="text-emerald-700 font-bold">نشط وآمن (Online)</span>
+                <span className="text-blue-600 font-bold">نشط وآمن (Online)</span>
               </div>
               <div className="flex justify-between bg-slate-50 p-2 rounded-lg">
                 <span className="text-slate-500">خط الاستجابة:</span>
-                <span className="text-emerald-700 font-bold font-mono">15ms (طرابلس)</span>
+                <span className="text-blue-600 font-bold font-mono">15ms (طرابلس)</span>
               </div>
               <div className="flex justify-between bg-slate-50 p-2 rounded-lg">
                 <span className="text-slate-500">مستوى حماية الجلسة:</span>
-                <span className="text-emerald-800 font-bold">ببروتوكول SSL + JWT</span>
+                <span className="text-blue-800 font-bold">ببروتوكول SSL + JWT</span>
               </div>
             </div>
 
@@ -235,7 +235,7 @@ export default function AuditLogsModule({
           </div>
 
           {/* Security tips */}
-          <div className="bg-emerald-950 text-emerald-100 p-5 rounded-2xl shadow-sm space-y-3">
+          <div className="bg-blue-950 text-blue-100 p-5 rounded-2xl shadow-sm space-y-3">
             <h4 className="text-xs font-bold text-amber-500 flex items-center gap-1">
               <HelpCircle size={14} /> مبدأ الأمان القومي للمشروعات
             </h4>

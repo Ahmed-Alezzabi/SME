@@ -102,9 +102,9 @@ export default function Calendar({ programs }: CalendarProps) {
   // Status Badge visual styles
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active": return "bg-emerald-600 text-white border-emerald-700";
+      case "active": return "bg-blue-600 text-white border-blue-700";
       case "planning": return "bg-amber-500 text-white border-amber-600";
-      case "completed": return "bg-teal-700 text-white border-teal-800";
+      case "completed": return "bg-sky-700 text-white border-sky-800";
       case "archived": return "bg-slate-500 text-white border-slate-600";
       default: return "bg-slate-500 text-white";
     }
@@ -142,7 +142,7 @@ export default function Calendar({ programs }: CalendarProps) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="space-y-1">
           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <CalendarIcon className="text-emerald-700" size={24} />
+            <CalendarIcon className="text-blue-600" size={24} />
             تقويم البرامج والأنشطة التدريبية
           </h2>
           <p className="text-xs text-slate-500">متابعة الفترات الزمنية للتدريب وجداول تنفيذ الدورات بالشهر والأسبوع واليوم.</p>
@@ -152,19 +152,19 @@ export default function Calendar({ programs }: CalendarProps) {
         <div className="flex items-center gap-1.5 self-start sm:self-auto">
           <button 
             onClick={() => setViewMode('month')} 
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'month' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'month' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
           >
             عرض شهري
           </button>
           <button 
             onClick={() => setViewMode('week')} 
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'week' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'week' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
           >
             عرض أسبوعي
           </button>
           <button 
             onClick={() => setViewMode('day')} 
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'day' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${viewMode === 'day' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
           >
             عرض يومي
           </button>
@@ -194,15 +194,15 @@ export default function Calendar({ programs }: CalendarProps) {
           </button>
         </div>
 
-        <div className="text-sm sm:text-base font-bold text-emerald-950 flex items-center gap-2">
+        <div className="text-sm sm:text-base font-bold text-blue-950 flex items-center gap-2">
           <span>{monthsArabic[currentMonth]} {currentYear}</span>
           {viewMode === 'week' && (
-            <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md font-semibold">
+            <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-md font-semibold">
               أسبوع: {weekDates[0].getDate()} - {weekDates[6].getDate()} {monthsArabic[weekDates[6].getMonth()]}
             </span>
           )}
           {viewMode === 'day' && (
-            <span className="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded-md font-semibold">
+            <span className="text-xs bg-sky-100 text-sky-850 px-2 py-0.5 rounded-md font-semibold font-mono">
               الموافق: {currentDate.getDate()} {monthsArabic[currentDate.getMonth()]}
             </span>
           )}
@@ -215,11 +215,11 @@ export default function Calendar({ programs }: CalendarProps) {
             <span>قيد التخطيط</span>
           </div>
           <div className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded bg-emerald-600"></span>
+            <span className="w-2.5 h-2.5 rounded bg-blue-650"></span>
             <span>برامج جارية (نشطة)</span>
           </div>
           <div className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded bg-teal-700"></span>
+            <span className="w-2.5 h-2.5 rounded bg-sky-700"></span>
             <span>برامج مكتملة</span>
           </div>
         </div>
@@ -251,13 +251,13 @@ export default function Calendar({ programs }: CalendarProps) {
                   key={idx} 
                   className={`min-h-28 rounded-xl border p-2 flex flex-col justify-between transition-all duration-300 relative ${
                     isToday 
-                      ? 'border-emerald-600 bg-emerald-50/40 ring-1 ring-emerald-500 shadow-sm' 
+                      ? 'border-blue-600 bg-blue-50/40 ring-1 ring-blue-500 shadow-sm' 
                       : 'border-slate-100 bg-white hover:border-slate-300 hover:shadow-sm'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className={`text-xs font-bold leading-none w-6 h-6 flex items-center justify-center rounded-full ${
-                      isToday ? 'bg-emerald-700 text-white' : 'text-slate-600'
+                      isToday ? 'bg-blue-700 text-white' : 'text-slate-600'
                     }`}>
                       {day}
                     </span>
@@ -304,14 +304,14 @@ export default function Calendar({ programs }: CalendarProps) {
                 <div 
                   key={idx} 
                   className={`border rounded-2xl p-4 min-h-64 flex flex-col ${
-                    isToday ? 'border-emerald-600 bg-emerald-50/20 shadow' : 'border-slate-100 bg-white'
+                    isToday ? 'border-blue-600 bg-blue-50/20 shadow' : 'border-slate-100 bg-white'
                   }`}
                 >
                   {/* Day Header */}
                   <div className="border-b border-slate-100 pb-3 text-center space-y-1">
                     <span className="text-xs font-bold text-slate-500 block">{daysOfWeekArabic[dateObj.getDay()]}</span>
                     <span className={`inline-block text-base font-extrabold px-3 py-1 rounded-full ${
-                      isToday ? 'bg-emerald-800 text-white' : 'text-slate-800 bg-slate-100'
+                      isToday ? 'bg-blue-800 text-white' : 'text-slate-800 bg-slate-100'
                     }`}>
                       {dateObj.getDate()}
                     </span>
@@ -350,7 +350,7 @@ export default function Calendar({ programs }: CalendarProps) {
       {viewMode === "day" && (
         <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
           <div className="text-center max-w-sm mx-auto space-y-2 mb-6">
-            <span className="text-xs bg-emerald-800 text-white font-bold py-1 px-3 rounded-full">برامج اليوم الفعال</span>
+            <span className="text-xs bg-blue-800 text-white font-bold py-1 px-3 rounded-full">برامج اليوم الفعال</span>
             <h3 className="text-lg font-bold text-slate-800">
               {daysOfWeekArabic[currentDate.getDay()]}، {currentDate.getDate()} {monthsArabic[currentDate.getMonth()]} {currentYear}
             </h3>
@@ -363,7 +363,7 @@ export default function Calendar({ programs }: CalendarProps) {
               <p className="text-xs font-semibold text-slate-500">لا توجد أية أنشطة تدريبية مجدولة لهذا اليوم المحدد.</p>
               <button 
                 onClick={resetToSystemDate}
-                className="mt-3 text-xs text-emerald-800 font-bold hover:underline"
+                className="mt-3 text-xs text-blue-800 font-bold hover:underline"
               >
                 العودة لتاريخ اليوم المعتمد
               </button>

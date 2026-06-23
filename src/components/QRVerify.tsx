@@ -9,7 +9,6 @@ import {
   Calendar, 
   Check, 
   X, 
-  Building,
   AlertTriangle
 } from "lucide-react";
 
@@ -50,11 +49,11 @@ export default function QRVerify({ participants, programs }: QRVerifyProps) {
       
       {/* Verification Logo */}
       <div className="text-center space-y-3">
-        <div className="inline-flex bg-emerald-50 text-emerald-800 p-4 rounded-full border border-emerald-100 shadow-sm">
+        <div className="inline-flex bg-blue-50 text-blue-800 p-4 rounded-full border border-blue-100 shadow-sm">
           <ShieldCheck size={48} className="animate-bounce" />
         </div>
         <div className="space-y-1">
-          <p className="text-xs font-bold text-emerald-800">البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة</p>
+          <p className="text-xs font-bold text-blue-800">البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة</p>
           <h2 className="text-xl font-extrabold text-slate-800">بوابة التحقق الإلكتروني الموحدة لمركز أعمال طرابلس</h2>
           <p className="text-xs text-slate-500">تحقق فوري من صحة ومصداقية شهادات خريجي البرامج التدريبية وعقود التمويل.</p>
         </div>
@@ -76,7 +75,7 @@ export default function QRVerify({ participants, programs }: QRVerifyProps) {
                 placeholder="CERT-2026-..."
                 value={certIdQuery}
                 onChange={(e) => setCertIdQuery(e.target.value)}
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 font-mono text-center"
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono text-center"
               />
             </div>
             
@@ -89,14 +88,14 @@ export default function QRVerify({ participants, programs }: QRVerifyProps) {
                 placeholder="رقم وطني فريد للمتدرب"
                 value={nationalIdQuery}
                 onChange={(e) => setNationalIdQuery(e.target.value)}
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 font-mono text-center"
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono text-center"
               />
             </div>
           </div>
 
           <button 
             type="submit" 
-            className="w-full bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md transition"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md transition"
           >
             تأكيد والتحقق من صحة وصلاحية الشهادة التدريبية
           </button>
@@ -111,13 +110,13 @@ export default function QRVerify({ participants, programs }: QRVerifyProps) {
             return (
               <div className="space-y-6">
                 {/* Visual verified state banner */}
-                <div className="bg-emerald-50 text-emerald-950 p-4 rounded-xl border border-emerald-100 flex items-center gap-3.5">
-                  <div className="bg-emerald-600 text-white p-2 rounded-full">
+                <div className="bg-blue-50 text-blue-950 p-4 rounded-xl border border-blue-100 flex items-center gap-3.5">
+                  <div className="bg-blue-600 text-white p-2 rounded-full">
                     <Check size={20} />
                   </div>
                   <div>
                     <h4 className="font-extrabold text-xs">تم فحص الشهادة بنجاح - الشهادة صالحة ومعتمدة ✓</h4>
-                    <p className="text-[10px] text-emerald-800 mt-0.5">مطابقة 100% لسجلات البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة لعام 2026.</p>
+                    <p className="text-[10px] text-blue-800 mt-0.5">مطابقة 100% لسجلات البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة لعام 2026.</p>
                   </div>
                 </div>
 
@@ -135,7 +134,7 @@ export default function QRVerify({ participants, programs }: QRVerifyProps) {
 
                   <div className="bg-slate-50 p-3 rounded-lg flex justify-between items-center sm:col-span-2">
                     <span className="text-slate-500">البرنامج التدريبي المنجز:</span>
-                    <span className="text-emerald-950 font-extrabold text-left">{prog ? prog.name : "دورة عامة لرواد الأعمال"}</span>
+                    <span className="text-blue-950 font-extrabold text-left">{prog ? prog.name : "دورة عامة لرواد الأعمال"}</span>
                   </div>
 
                   <div className="bg-slate-50 p-3 rounded-lg flex justify-between items-center">

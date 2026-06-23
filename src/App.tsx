@@ -8,6 +8,8 @@ import Calendar from "./components/Calendar";
 import ReportsModule from "./components/ReportsModule";
 import AuditLogsModule from "./components/AuditLogsModule";
 import QRVerify from "./components/QRVerify";
+// @ts-ignore
+import npsmeLogo from "./assets/images/Logo-01.png";
 import { 
   Award, 
   Calendar as CalendarIcon, 
@@ -16,7 +18,6 @@ import {
   Users, 
   FileSpreadsheet, 
   ShieldCheck, 
-  Building,
   LogOut,
   ChevronDown,
   Lock,
@@ -27,7 +28,7 @@ import {
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [userRole, setUserRole] = useState<UserRole>("admin");
-  const [username, setUsername] = useState("أحمد الزعابي");
+  const [username, setUsername] = useState("الموظف الحالي");
   
   // Data State
   const [programs, setPrograms] = useState<TrainingProgram[]>([]);
@@ -142,55 +143,46 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans" id="training-management-app">
       
       {/* 1. Official Header Row (Tripoli Business Center branding matching sme.gov.ly) */}
-      <header className="bg-gradient-to-r from-emerald-950 via-emerald-850 to-teal-900 text-white shadow-md border-b-4 border-amber-600 no-print">
+      <header className="bg-gradient-to-r from-sme-navy-dark via-sme-navy to-sme-navy-dark text-white shadow-md border-b-4 border-sme-gold no-print">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between flex-wrap gap-4">
           
           {/* Logo and title */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 shadow-inner relative overflow-hidden shrink-0">
-              {/* Gold arabesque graphic placeholder banner */}
-              <div className="bg-emerald-800 rounded-full w-full h-full flex items-center justify-center">
-                <Building className="text-amber-500" size={24} />
-              </div>
-            </div>
+            <img
+              src={npsmeLogo}
+              alt="مركز أعمال طرابلس"
+              className="w-14 h-14 object-contain"
+            />
             <div className="space-y-0.5">
-              <span className="text-[10px] sm:text-xs font-semibold text-amber-500 tracking-wide block">البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة</span>
+              <span className="text-[10px] sm:text-xs font-semibold text-sme-gold tracking-wide block">البرنامج الوطني للمشروعات الصغرى والمتوسطة</span>
               <h1 className="text-sm sm:text-lg font-black tracking-tight flex items-center gap-1.5 leading-none">
-                منظومة مركز أعمال طرابلس المتكاملة
-                <span className="text-[10px] bg-amber-600 text-emerald-950 font-bold px-1.5 py-0.5 rounded">إصدار 2026</span>
+                 مركز أعمال طرابلس 
               </h1>
             </div>
           </div>
-
-          {/* User selector, Role simulations, and Links */}
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex flex-col text-left font-semibold text-[10px] opacity-75">
-              <span>تاريخ التشغيل والتحصيل المعتمد</span>
-              <span className="font-mono text-amber-500 text-xs">2026-06-21 (طرابلس)</span>
-            </div>
 
             <div className="h-6 w-px bg-white/25 hidden md:block"></div>
 
             {/* Quick action: QR check portal */}
             <button 
               onClick={() => setActiveTab("verify")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-extrabold flex items-center gap-1 transition ${activeTab === 'verify' ? 'bg-amber-500 text-slate-950' : 'bg-emerald-900/40 text-amber-200 border border-amber-500/20 hover:bg-emerald-900/80'}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-extrabold flex items-center gap-1 transition ${activeTab === 'verify' ? 'bg-sme-gold text-sme-navy-dark' : 'bg-sme-navy-light/40 text-sme-gold border border-sme-gold/20 hover:bg-sme-navy-light/80'}`}
             >
-              <ShieldCheck size={14} /> بوابة التحقق الإلكتروني
+              <ShieldCheck size={14} />  التحقق من الشهادة
             </button>
 
             {/* Active User session selector */}
             <div className="relative">
               <button 
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center gap-2 bg-emerald-900/60 hover:bg-emerald-900 border border-emerald-700/60 p-1.5 px-3 rounded-xl transition text-right"
+                className="flex items-center gap-2 bg-sme-navy-light/60 hover:bg-sme-navy border border-sme-navy-light/60 p-1.5 px-3 rounded-xl transition text-right"
               >
                 <div className="space-y-0.5 hidden sm:block">
                   <div className="text-xs font-bold text-slate-100">{username}</div>
-                  <div className="text-[9px] text-amber-400 font-semibold uppercase font-mono leading-none">صلاحية: {userRole}</div>
+                  <div className="text-[9px] text-sme-gold font-semibold uppercase font-mono leading-none">صلاحية: {userRole}</div>
                 </div>
                 <ChevronDown size={14} className="text-slate-300" />
-                <div className="bg-amber-500 w-7 h-7 rounded-full flex items-center justify-center text-slate-950 font-black text-xs shrink-0">
+                <div className="bg-sme-gold w-7 h-7 rounded-full flex items-center justify-center text-sme-navy-dark font-black text-xs shrink-0">
                   {username.charAt(0)}
                 </div>
               </button>
@@ -198,10 +190,10 @@ export default function App() {
               {isUserMenuOpen && (
                 <div className="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 text-slate-800 animate-fade-in text-right">
                   <div className="px-4 py-2 border-b border-slate-100">
-                    <p className="text-[10px] text-slate-400 font-bold">الموظف الحالي والمسؤول</p>
+                    <p className="text-[10px] text-slate-400 font-bold">الموظف الحالي</p>
                     <p className="text-sm font-bold text-slate-800 mt-0.5">{username}</p>
-                    <span className="inline-block text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded mt-1">
-                      ديباجة الصلاحيات: {userRole}
+                    <span className="inline-block text-[9px] bg-sme-navy-soft text-sme-navy font-bold px-1.5 py-0.5 rounded mt-1">
+                       الصلاحيات: {userRole}
                     </span>
                   </div>
 
@@ -213,26 +205,15 @@ export default function App() {
                     className="w-full text-right px-4 py-2 text-xs font-bold hover:bg-slate-50 transition flex items-center gap-2"
                   >
                     <Lock size={12} className="text-slate-400" />
-                    المحاكاة وتعديل الدور
+                     تبدل الموظف
                   </button>
 
-                  <button 
-                    onClick={() => {
-                      alert("تسجيل الخروج محمي ومؤمن ببيئة طرابلس الآمنة الحالية.");
-                      setIsUserMenuOpen(false);
-                    }}
-                    className="w-full text-right px-4 py-2 text-xs font-bold hover:bg-slate-50 text-red-600 transition flex items-center gap-2"
-                  >
-                    <LogOut size={12} className="text-red-500" />
-                    قفل الجلسة مؤقتاً
-                  </button>
+                  
                 </div>
               )}
             </div>
 
           </div>
-
-        </div>
       </header>
 
       {/* 2. Primary Layout Framework: Sidebar + Workspace */}
@@ -247,59 +228,59 @@ export default function App() {
               
               <button 
                 onClick={() => setActiveTab("dashboard")}
-                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'dashboard' ? 'bg-emerald-800 text-white shadow-md shadow-emerald-950/10' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'dashboard' ? 'bg-sme-navy text-white shadow-md shadow-sme-navy/10 border-r-4 border-sme-gold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
-                <LayoutDashboard size={16} /> لوحة التحكم الإحصائية
+                <LayoutDashboard size={16} className={activeTab === 'dashboard' ? 'text-sme-gold' : 'text-slate-400'} /> لوحة التحكم الإحصائية
               </button>
 
               <button 
                 onClick={() => setActiveTab("programs")}
-                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'programs' ? 'bg-emerald-800 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'programs' ? 'bg-sme-navy text-white shadow-md border-r-4 border-sme-gold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
                 <span className="flex items-center gap-3">
-                  <BookOpen size={16} /> إدارة البرامج التدريبية
+                  <BookOpen size={16} className={activeTab === 'programs' ? 'text-sme-gold' : 'text-slate-400'} /> إدارة البرامج التدريبية
                 </span>
-                <span className="bg-slate-100 text-slate-600 font-mono text-[10px] px-2 py-0.5 rounded-full font-bold">
+                <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full font-bold ${activeTab === 'programs' ? 'bg-sme-navy-light text-sme-gold' : 'bg-slate-100 text-slate-600'}`}>
                   {programs.length}
                 </span>
               </button>
 
               <button 
                 onClick={() => setActiveTab("participants")}
-                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'participants' ? 'bg-emerald-800 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'participants' ? 'bg-sme-navy text-white shadow-md border-r-4 border-sme-gold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
                 <span className="flex items-center gap-3">
-                  <Users size={16} /> سجل وبيانات المشاركين
+                  <Users size={16} className={activeTab === 'participants' ? 'text-sme-gold' : 'text-slate-400'} /> سجل بيانات المشاركين
                 </span>
-                <span className="bg-slate-100 text-slate-600 font-mono text-[10px] px-2 py-0.5 rounded-full font-bold">
+                <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full font-bold ${activeTab === 'participants' ? 'bg-sme-navy-light text-sme-gold' : 'bg-slate-100 text-slate-600'}`}>
                   {participants.length}
                 </span>
               </button>
 
               <button 
                 onClick={() => setActiveTab("certificates")}
-                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'certificates' ? 'bg-emerald-800 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'certificates' ? 'bg-sme-navy text-white shadow-md border-r-4 border-sme-gold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
                 <span className="flex items-center gap-3">
-                  <Award size={16} /> كشوفات وإصدار الشهادات
+                  <Award size={16} className={activeTab === 'certificates' ? 'text-sme-gold' : 'text-slate-400'} /> كشوفات وإصدار الشهادات
                 </span>
-                <span className="bg-amber-100 text-amber-800 font-mono text-[10px] px-2 py-0.5 rounded-full font-bold">
+                <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full font-bold ${activeTab === 'certificates' ? 'bg-sme-navy-light text-sme-gold' : 'bg-sme-gold-light text-sme-gold border border-sme-gold/10'}`}>
                   {participants.filter(p => p.certificateId).length}
                 </span>
               </button>
 
               <button 
                 onClick={() => setActiveTab("calendar")}
-                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'calendar' ? 'bg-emerald-800 text-white shadow-md animate-fade-in' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'calendar' ? 'bg-sme-navy text-white shadow-md border-r-4 border-sme-gold animate-fade-in' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
-                <CalendarIcon size={16} /> أجندة وتقويم الدورات
+                <CalendarIcon size={16} className={activeTab === 'calendar' ? 'text-sme-gold' : 'text-slate-400'} /> أجندة وتقويم الدورات
               </button>
 
               <button 
                 onClick={() => setActiveTab("reports")}
-                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'reports' ? 'bg-emerald-800 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50'}`}
+                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'reports' ? 'bg-sme-navy text-white shadow-md border-r-4 border-sme-gold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
               >
-                <FileSpreadsheet size={16} /> التقارير والبيانات الفنية
+                <FileSpreadsheet size={16} className={activeTab === 'reports' ? 'text-sme-gold' : 'text-slate-400'} /> التقارير والبيانات الفنية
               </button>
 
             </nav>
@@ -311,22 +292,22 @@ export default function App() {
             
             <button 
               onClick={() => setActiveTab("security")}
-              className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'security' ? 'bg-slate-950 text-white' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-bold rounded-xl transition ${activeTab === 'security' ? 'bg-sme-navy text-white border-r-4 border-sme-gold shadow-md' : 'text-slate-600 hover:bg-slate-50'}`}
             >
-              <ShieldCheck size={16} className="text-emerald-700" />
+              <ShieldCheck size={16} className={activeTab === 'security' ? 'text-sme-gold' : 'text-sme-gold'} />
               صلاحيات الموظفين والتدقيق
             </button>
           </div>
 
           {/* Institutional Contact footer */}
-          <div className="bg-gradient-to-tr from-emerald-950 to-emerald-900 text-emerald-100 p-4 rounded-2xl space-y-2 text-center text-[10px] leading-relaxed shadow-sm">
-            <p className="font-bold text-amber-500">موقع مركز أعمال طرابلس الرسمي</p>
+          <div className="bg-gradient-to-tr from-sme-navy-dark to-sme-navy text-slate-100 p-4 rounded-2xl space-y-2 text-center text-[10px] leading-relaxed shadow-sm">
+            <p className="font-bold text-sme-gold">موقع البرنامج الوطني للمشروعات</p>
             <p>التواصل المباشر مع لجنة الفحص والتمويل متوفر عبر المراسلة التلقائية.</p>
             <a 
               href="https://sme.gov.ly" 
               target="_blank" 
               rel="noreferrer" 
-              className="text-white hover:underline block font-mono text-[11px] font-bold"
+              className="text-white hover:text-sme-gold hover:underline block font-mono text-[11px] font-bold transition"
             >
               HTTPS://SME.GOV.LY
             </a>
@@ -337,7 +318,7 @@ export default function App() {
         <main className="flex-1 min-w-0">
           {loading ? (
             <div className="h-96 flex flex-col items-center justify-center text-slate-400 space-y-3">
-              <Loader className="animate-spin text-emerald-800" size={32} />
+              <Loader className="animate-spin text-blue-600" size={32} />
               <p className="text-xs font-bold">جاري تحميل المنظومة وتأمين مصادقة الجلسة...</p>
             </div>
           ) : (
@@ -426,7 +407,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-center sm:text-right">
           <div className="space-y-1">
             <p className="font-bold text-slate-300">حقوق الطبع محفوظة © 2026 مركز أعمال طرابلس</p>
-            <p className="text-[10px] text-slate-500">البرنامج الوطني لدعم المشروعات الصغرى والمتوسطة - وزارة الاقتصاد والتجارة - ليبيا</p>
+            <p className="text-[10px] text-slate-500">البرنامج الوطني للمشروعات الصغرى والمتوسطة - وزارة الحكم المحلي - ليبيا</p>
           </div>
           
           <div className="flex items-center justify-center sm:justify-start gap-4 text-[10px] font-mono">

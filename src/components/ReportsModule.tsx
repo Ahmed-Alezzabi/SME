@@ -111,7 +111,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
         <div>
           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <FileSpreadsheet className="text-emerald-700" size={24} />
+            <FileSpreadsheet className="text-blue-600" size={24} />
             التقارير المتقدمة وتحليل الفعالية
           </h2>
           <p className="text-xs text-slate-500 mt-1">توليد تقارير الأنشطة الإجمالية للبرامج وتقديرات المتدربين مع خيارات PDF والطباعة والـ Excel.</p>
@@ -120,7 +120,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
         <div className="flex items-center gap-2 self-start sm:self-auto no-print">
           <button 
             onClick={() => handleExportCSV(selectedReportTab)}
-            className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold py-2 px-3.5 rounded-xl flex items-center gap-1.5 transition"
+            className="bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold py-2 px-3.5 rounded-xl flex items-center gap-1.5 transition"
           >
             <Download size={13} /> تصدير Excel / CSV
           </button>
@@ -172,7 +172,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
             {/* Quick selector */}
             <div className="md:col-span-1 space-y-3 border-l pb-3 border-slate-100 pl-4">
               <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1">
-                <CheckSquare size={16} className="text-emerald-700" />
+                <CheckSquare size={16} className="text-blue-600" />
                 اختر البرنامج لعرض تقريره المفصل
               </h3>
               <p className="text-[11px] text-slate-500 leading-normal">
@@ -182,7 +182,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
               <select 
                 value={selectedProgId}
                 onChange={(e) => setSelectedProgId(e.target.value)}
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-800 bg-slate-50 font-semibold"
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 bg-slate-50 font-semibold"
               >
                 {programs.map(p => (
                   <option key={p.id} value={p.id}>[{p.programNumber}] {p.name}</option>
@@ -200,8 +200,8 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
                 </div>
                 <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
                   <span className="text-[11px] text-slate-500 font-bold block">عدد الناجحين</span>
-                  <span className="text-2xl font-black text-emerald-800 font-mono">{progPartsPassed}</span>
-                  <p className="text-[10px] text-emerald-600 mt-0.5">استحقاق شهادة</p>
+                  <span className="text-2xl font-black text-blue-800 font-mono">{progPartsPassed}</span>
+                  <p className="text-[10px] text-blue-600 mt-0.5">استحقاق شهادة</p>
                 </div>
                 <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
                   <span className="text-[11px] text-slate-500 font-bold block">متوسط معدل العلامات</span>
@@ -222,7 +222,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
           {activeProg && (
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
               <h3 className="text-sm font-bold text-slate-800">
-                قائمة المشاركين المقيدين بدورة: <span className="text-emerald-800">{activeProg.name}</span>
+                قائمة المشاركين المقيدين بدورة: <span className="text-blue-800">{activeProg.name}</span>
               </h3>
               
               <div className="overflow-x-auto">
@@ -254,7 +254,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
                               {p.evaluation} / 100
                             </span>
                           </td>
-                          <td className="p-3 text-center font-mono font-bold text-emerald-800">{p.certificateId || "غير صادرة"}</td>
+                          <td className="p-3 text-center font-mono font-bold text-blue-800">{p.certificateId || "غير صادرة"}</td>
                         </tr>
                       ))
                     )}
@@ -271,7 +271,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
           <div className="flex justify-between items-center pb-3 border-b border-slate-100">
             <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-              <Activity className="text-teal-700" size={18} />
+              <Activity className="text-blue-600" size={18} />
               رصد الحضور المنتظم ومعدات تقييم المشروعات
             </h3>
             <span className="text-xs text-slate-500 font-semibold">إجمالي الكشوفات المسجلة: {totalParticipants} مشارك</span>
@@ -297,14 +297,14 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
                       <td className="p-3 font-bold text-slate-900">{p.name}</td>
                       <td className="p-3">{pr ? pr.name : "غير محدد"}</td>
                       <td className="p-3 text-center text-[10px]">
-                        <span className={`px-2 py-0.5 rounded ${p.attendanceStatus === 'present' ? 'bg-emerald-50 text-emerald-900' : 'bg-red-50 text-red-900'}`}>
+                        <span className={`px-2 py-0.5 rounded ${p.attendanceStatus === 'present' ? 'bg-blue-50 text-blue-900' : 'bg-red-50 text-red-900'}`}>
                           {p.attendanceStatus === 'present' ? 'منضبط' : 'غيابات'}
                         </span>
                       </td>
-                      <td className="p-3 text-center font-mono font-bold text-teal-800">{p.attendanceRate}%</td>
+                      <td className="p-3 text-center font-mono font-bold text-blue-800">{p.attendanceRate}%</td>
                       <td className="p-3 text-center font-mono font-bold">{p.evaluation} / 100</td>
                       <td className="p-3 text-center">
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${p.passStatus === 'passed' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${p.passStatus === 'passed' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'}`}>
                           {p.passStatus === 'passed' ? 'معتمد للاجتياز' : 'انتظار الفرز'}
                         </span>
                       </td>
@@ -325,7 +325,7 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
               <Award className="text-amber-500" size={18} />
               سجل الشهادات الصادرة والوثائق الوطنية المعتمدة
             </h3>
-            <span className="text-xs bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full font-bold">
+            <span className="text-xs bg-blue-50 text-blue-800 px-3 py-1 rounded-full font-bold">
               مجموع الشهادات: {participants.filter(p => p.certificateId).length} شهادة صادرة
             </span>
           </div>
@@ -347,12 +347,12 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
                   const pr = programs.find(item => item.id === p.programId);
                   return (
                     <tr key={p.id}>
-                      <td className="p-3 font-mono font-bold text-emerald-800">{p.certificateId}</td>
+                      <td className="p-3 font-mono font-bold text-blue-800">{p.certificateId}</td>
                       <td className="p-3 font-mono font-bold">{p.certificateDate}</td>
                       <td className="p-3 font-bold text-slate-900">{p.name}</td>
                       <td className="p-3 font-mono">{p.nationalId}</td>
                       <td className="p-3">{pr ? pr.name : "برنامج ريادة عام"}</td>
-                      <td className="p-3 text-center text-[10px] text-teal-800 font-bold">صالح ومعتمد ✓</td>
+                      <td className="p-3 text-center text-[10px] text-blue-800 font-bold">صالح ومعتمد ✓</td>
                     </tr>
                   );
                 })}
@@ -374,12 +374,12 @@ export default function ReportsModule({ participants, programs }: ReportsModuleP
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center space-y-1">
               <span className="text-xs font-bold text-slate-400 block">إجمالي كفاءات رواد الأعمال</span>
-              <span className="text-3xl font-black text-emerald-800 font-mono">{passedCount} منتسب</span>
-              <p className="text-[10px] text-emerald-600 mt-0.5">جاهزين لاستلام صكوك التميز والتمويل</p>
+              <span className="text-3xl font-black text-blue-800 font-mono">{passedCount} منتسب</span>
+              <p className="text-[10px] text-blue-600 mt-0.5">جاهزين لاستلام صكوك التميز والتمويل</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center space-y-1">
               <span className="text-xs font-bold text-slate-400 block">متوسط معدل الحضور الكلي</span>
-              <span className="text-3xl font-black text-teal-800 font-mono">{attendanceAvg}%</span>
+              <span className="text-3xl font-black text-blue-800 font-mono">{attendanceAvg}%</span>
               <p className="text-[10px] text-slate-500">مؤشر انضباطية البرامج والجدولة</p>
             </div>
           </div>

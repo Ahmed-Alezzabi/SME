@@ -173,15 +173,15 @@ export default function ProgramsList({
   const getStatusLabelAndStyle = (stat: string) => {
     switch (stat) {
       case "active":
-        return { label: "نشط حالياً", bg: "bg-emerald-100 text-emerald-800", ring: "ring-emerald-600/10" };
+        return { label: "نشط حالياً", bg: "bg-sme-navy-soft text-sme-navy font-bold", ring: "ring-sme-navy/10" };
       case "planning":
-        return { label: "قيد التخطيط", bg: "bg-amber-100 text-amber-800", ring: "ring-amber-600/10" };
+        return { label: "قيد التخطيط", bg: "bg-sme-gold-light text-sme-gold-hover border border-sme-gold/20 font-bold", ring: "ring-sme-gold/10" };
       case "completed":
-        return { label: "مكتمل", bg: "bg-teal-100 text-teal-800", ring: "ring-teal-600/10" };
+        return { label: "مكتمل", bg: "bg-slate-100 text-slate-800 font-bold border border-slate-200", ring: "ring-slate-600/10" };
       case "archived":
-        return { label: "مؤرشف", bg: "bg-slate-100 text-slate-600", ring: "ring-slate-600/10" };
+        return { label: "مؤرشف", bg: "bg-slate-200 text-slate-600 font-bold", ring: "ring-slate-600/10" };
       default:
-        return { label: "غير معروف", bg: "bg-slate-100 text-slate-800", ring: "ring-slate-600/10" };
+        return { label: "غير معروف", bg: "bg-slate-100 text-slate-800 font-bold", ring: "ring-slate-600/10" };
     }
   };
 
@@ -191,10 +191,10 @@ export default function ProgramsList({
     <div className="space-y-6 animate-fade-in" id="programs-module">
       
       {/* Header Widget */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-100 border-r-8 border-sme-gold">
         <div>
           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <Calendar className="text-emerald-700" size={24} />
+            <Calendar className="text-sme-navy" size={24} />
             إدارة البرامج والأنشطة التدريبية
           </h2>
           <p className="text-xs text-slate-500 mt-1">تخطيط وجدولة ومتابعة الدورات التنموية لرواد وبناة المشروعات الصغرى.</p>
@@ -202,7 +202,7 @@ export default function ProgramsList({
         {canEdit && (
           <button 
             onClick={handleOpenAdd}
-            className="bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center gap-1.5 transition self-start sm:self-auto"
+            className="bg-sme-navy hover:bg-sme-navy-light text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center gap-1.5 transition self-start sm:self-auto"
             id="btn-add-program"
           >
             <Plus size={16} /> إضافة برنامج تدريبي
@@ -219,7 +219,7 @@ export default function ProgramsList({
             placeholder="البحث باسم البرنامج، الرقم الشفري للبرنامج، أو اسم المدرب..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pr-9 pl-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full pr-9 pl-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           />
         </div>
 
@@ -227,7 +227,7 @@ export default function ProgramsList({
           <select 
             value={cityFilter}
             onChange={(e) => setCityFilter(e.target.value)}
-            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           >
             <option value="">جميع المدن</option>
             {uniqueCities.map((c, i) => (
@@ -240,7 +240,7 @@ export default function ProgramsList({
           <select 
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+            className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sme-navy bg-slate-50"
           >
             <option value="">كل الحالات</option>
             <option value="planning">قيد التخطيط والتسجيل</option>
@@ -270,9 +270,9 @@ export default function ProgramsList({
               >
                 {/* Header Strip with Color depending on state */}
                 <div className={`h-1.5 w-full ${
-                  prog.status === 'active' ? 'bg-teal-600' :
-                  prog.status === 'planning' ? 'bg-amber-400' :
-                  prog.status === 'completed' ? 'bg-emerald-700' : 'bg-slate-400'
+                  prog.status === 'active' ? 'bg-sme-navy' :
+                  prog.status === 'planning' ? 'bg-sme-gold' :
+                  prog.status === 'completed' ? 'bg-sme-navy-light' : 'bg-slate-300'
                 }`}></div>
 
                 <div className="p-5 flex-1 space-y-4">
@@ -287,7 +287,7 @@ export default function ProgramsList({
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-bold text-slate-800 text-sm leading-snug line-clamp-2 h-10 group-hover:text-emerald-800 transition-colors">
+                  <h3 className="font-bold text-slate-800 text-sm leading-snug line-clamp-2 h-10 group-hover:text-sme-navy transition-colors">
                     {prog.name}
                   </h3>
 
@@ -320,8 +320,8 @@ export default function ProgramsList({
                   </div>
 
                   {/* Target Group details */}
-                  <div className="text-[11px] text-slate-500 bg-emerald-50/40 p-2 rounded-lg border border-emerald-50 leading-relaxed">
-                    <span className="font-semibold text-emerald-900 block mb-0.5">الفئة المستهدفة:</span>
+                  <div className="text-[11px] text-slate-500 bg-sme-navy-soft/60 p-2 rounded-lg border border-sme-navy-soft leading-relaxed">
+                    <span className="font-semibold text-sme-navy block mb-0.5">الفئة المستهدفة:</span>
                     <p className="line-clamp-2">{prog.targetGroup}</p>
                   </div>
                 </div>
@@ -335,14 +335,14 @@ export default function ProgramsList({
                     <div className="flex items-center gap-1">
                       <button 
                         onClick={() => handleOpenEdit(prog)}
-                        className="p-1.5 text-slate-500 hover:text-emerald-700 hover:bg-white rounded shadow-sm hover:shadow transition"
+                        className="p-1.5 text-slate-500 hover:text-sme-navy hover:bg-white rounded shadow-sm hover:shadow transition"
                         title="تعديل البرنامج"
                       >
                         <Edit size={13} />
                       </button>
                       <button 
                         onClick={() => handleDuplicate(prog)}
-                        className="p-1.5 text-slate-500 hover:text-teal-700 hover:bg-white rounded shadow-sm hover:shadow transition"
+                        className="p-1.5 text-slate-500 hover:text-sme-gold hover:bg-white rounded shadow-sm hover:shadow transition"
                         title="نسخ وتكرار"
                       >
                         <Copy size={13} />
@@ -381,12 +381,12 @@ export default function ProgramsList({
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-fade-in">
             {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-800 to-teal-800 px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-blue-800 to-indigo-800 px-6 py-4 text-white flex items-center justify-between sticky top-0 z-10">
               <div>
                 <h3 className="font-bold text-base">
                   {editingProgram ? "تعديل بيانات البرنامج التدريبي" : "إضافة برنامج تدريبي جديد"}
                 </h3>
-                <p className="text-[10px] text-emerald-200 mt-0.5">يرجى ملء البيانات بدقة لضمان دقة إصدار وتوثيق الشهادات.</p>
+                <p className="text-[10px] text-blue-200 mt-0.5">يرجى ملء البيانات بدقة لضمان دقة إصدار وتوثيق الشهادات.</p>
               </div>
               <button 
                 onClick={() => setIsModalOpen(false)}
@@ -409,7 +409,7 @@ export default function ProgramsList({
                     required
                     value={programNumber}
                     onChange={(e) => setProgramNumber(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono text-right"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono text-right"
                   />
                 </div>
 
@@ -422,7 +422,7 @@ export default function ProgramsList({
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -432,7 +432,7 @@ export default function ProgramsList({
                   <select 
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="حضورى">حضورى بالكامل</option>
                     <option value="عن بعد">عن بعد (منصة افتراضية)</option>
@@ -449,7 +449,7 @@ export default function ProgramsList({
                     required
                     value={trainer}
                     onChange={(e) => setTrainer(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -462,7 +462,7 @@ export default function ProgramsList({
                     required
                     value={organization}
                     onChange={(e) => setOrganization(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -475,7 +475,7 @@ export default function ProgramsList({
                     required
                     value={targetGroup}
                     onChange={(e) => setTargetGroup(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -489,7 +489,7 @@ export default function ProgramsList({
                       required
                       value={days}
                       onChange={(e) => setDays(Number(e.target.value))}
-                      className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 text-center"
+                      className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-center"
                     />
                   </div>
                   <div>
@@ -500,7 +500,7 @@ export default function ProgramsList({
                       required
                       value={hours}
                       onChange={(e) => setHours(Number(e.target.value))}
-                      className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 text-center"
+                      className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-center"
                     />
                   </div>
                 </div>
@@ -514,7 +514,7 @@ export default function ProgramsList({
                     required
                     value={maxParticipants}
                     onChange={(e) => setMaxParticipants(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 text-center"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-center"
                   />
                 </div>
 
@@ -524,7 +524,7 @@ export default function ProgramsList({
                   <select 
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="طرابلس">طرابلس</option>
                     <option value="بنغازي">بنغازي</option>
@@ -547,7 +547,7 @@ export default function ProgramsList({
                     required
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   />
                 </div>
 
@@ -559,7 +559,7 @@ export default function ProgramsList({
                     required
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono"
                   />
                 </div>
 
@@ -571,7 +571,7 @@ export default function ProgramsList({
                     required
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50 font-mono"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 font-mono"
                   />
                 </div>
 
@@ -581,7 +581,7 @@ export default function ProgramsList({
                   <select 
                     value={status}
                     onChange={(e) => setStatus(e.target.value as any)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                   >
                     <option value="planning">مجدول وقيد التخطيط والتسجيل</option>
                     <option value="active">نشط وفعال حالياً (تحت التدريب)</option>
@@ -600,7 +600,7 @@ export default function ProgramsList({
                   placeholder="ملاحظات حول قاعة التدريب، المناهج التعليمية المطبقة أى استثناءات..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-slate-50"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50"
                 ></textarea>
               </div>
 
@@ -615,7 +615,7 @@ export default function ProgramsList({
                 </button>
                 <button 
                   type="submit" 
-                  className="px-4 py-2 text-xs font-semibold text-white bg-emerald-800 hover:bg-emerald-700 rounded-xl transition shadow-sm"
+                  className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition shadow-sm"
                 >
                   {editingProgram ? "حفظ التغييرات" : "إضافة البرنامج"}
                 </button>
